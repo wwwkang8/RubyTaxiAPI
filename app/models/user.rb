@@ -19,6 +19,8 @@ class User < ApplicationRecord
   validates :pwd, presence: true, length: {minimum:3, maximum:25}
 
   has_many :bookings
+
+  #has_secure_password
 =begin
   alias_method :authenticate, :valid_password?
 
