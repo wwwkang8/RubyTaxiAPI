@@ -16,12 +16,19 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
-
-    if @booking.save
-      render :show, status: :created, location: @booking
+    if (booking_params[:destination]).length < 100
+      if @booking.save
+        render :show, status: :created, location: @booking
+      else
+        render json: @booking.errors, status: :unprocessable_entity
+      end
     else
-      render json: @booking.errors, status: :unprocessable_entity
+        @msg = {
+          message: "Destination is too long. limit 100character. Please write shorter."
+        }
+      render json: @msg
     end
+
   end
 
   # PATCH/PUT /bookings/1
