@@ -22,9 +22,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # session[:user_id] = nil
-    @user = User.find_by_id(params[:session][:id])
-    session.delete(@user.id)
+    session[:user_id] = nil
+    # @user = User.find_by_id(params[:session][:id])
+    # session.delete(@user.id)
     @msg = {
         message: "Session deleted",
         user: User.find_by_id(session[:user_id])
