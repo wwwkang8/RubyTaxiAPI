@@ -43,11 +43,17 @@ class BookingsController < ApplicationController
     # 해당 택시기사가 애초에 없는 택시기사일 때 에러메시지
     return error_message_response('This taxi driver is not exist') if user.nil? || user.usertype != 'driver'
 
+    # 해당 booking이 이미 다른 택시기사에게 배차 수락이 되었을때, 중복 수락을 방지하기 위한 코드
+    @booking = Booking.find_by(id: params[:id])
+    return error_message_response('This booking has been already accepted by other driver.') if @booking.taxi.present?
+
     # 위의 택시기사가 이미 booking이 있는지 체크하기 위해 객체를 가져온다
     @booking = Booking.find_by(taxi: driver_params[:taxi]) # 동일 클래스 내부이면 instance variable 사용하지 않는다.
 
     # 택시기사가 이미 맡은 배차가 있을 때
     return error_message_response('This taxi driver already have booking') if @booking.present?
+
+
 
     return error_message_response('...', @booking.errors) unless accept_booking
 
