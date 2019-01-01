@@ -21,6 +21,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Simple token devise gemfile
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
 gem 'devise'
+gem 'jwt'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

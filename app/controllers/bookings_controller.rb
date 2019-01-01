@@ -4,12 +4,15 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
+    @user = current_user
+    puts @user.email
     @bookings = Booking.all.order("id DESC")
   end
 
   # GET /bookings/1
   # GET /bookings/1.json
   def show
+
   end
 
   # POST /bookings

@@ -28,10 +28,16 @@ class SessionsController < ApplicationController
   end
 
   def create_token
-    user = User.find_by(email: params[:email])
+    @user = User.find_by(email: params[:email])
 
-    if user.present?&&check_valid_password(user, params[:pwd])
-      render json: user.as_json(only: [:id, :email, :authentication_token]), status: :created
+
+    if @user.present?&&check_valid_password(@user, params[:pwd])
+      jwt = JWT.encode({user_id: @user.id, exp: (Time.now + 2.weeks).to_i}, Rails.application.credentials.secret_key_base, 'HS256')
+      # jwt = JWT.encode({user_id: @user.id, exp: (Time.now + 2.weeks).to_i}, Rails.application.secrets.secret_key_base, 'HS256')
+      #
+      # render json: @user.as_json(only: [:id, :email, :authentication_token]), locals: {token: jwt}, status: :created
+      render :'sessions/create', locals: {token: jwt}, status: :created
+      # render create, locals: {token: jwt}, status: :created
     else
       error_message_response('No user found. Please check email/password', nil)
     end
