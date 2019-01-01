@@ -13,11 +13,11 @@
  ![createuser](https://user-images.githubusercontent.com/26863285/50573978-a9621d80-0e21-11e9-8400-20cd67e035fe.png)
  
  2) 로그인 
-     - 세션 기반 GET /login(.:format)    sessions#new
-     {
-      "email":"driver12@gmail.com",
-      "pwd":"123"
-     }
+     - 세션 기반 GET /login(.:format)    sessions#new <br/>
+     {<br/>
+      "email":"driver12@gmail.com",<br/>
+      "pwd":"123"<br/>
+     }<br/>
      
      - JWT 기반 POST /loginToken(.:format)   sessions#create_token
      {
