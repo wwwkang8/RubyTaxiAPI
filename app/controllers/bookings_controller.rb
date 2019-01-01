@@ -19,17 +19,14 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
-    if (booking_params[:destination]).length < 100
+    if (booking_params[:destination]).length < 100 # 배차 신청시에 목적지의 글자가 100자 이내로 제한
       if @booking.save
         render :show, status: :created, location: @booking
       else
         render json: @booking.errors, status: :unprocessable_entity
       end
     else
-      @msg = {
-        message: "Destination is too long. limit 100character. Please write shorter."
-      }
-      render json: @msg
+      error_message_response('Destination is too long. limit 100character. Please write shorter.')
     end
 
   end
@@ -63,7 +60,7 @@ class BookingsController < ApplicationController
 
   end
   
-  
+  # 택시기사가 배차 수락을 했을 때
   def accept_booking
     booking = Booking.find_by(id: params[:id])
     booking.taxi = driver_params[:taxi]
@@ -71,7 +68,7 @@ class BookingsController < ApplicationController
     booking.save
   end
 
-  # 택시기사가 수락한 배차예약에 대해 승객을 이동시켜 완료하였을 
+  # 택시기사가 수락한 배차예약에 대해 승객을 이동시켜 완료하였을 때
   def finish_driving
     # 배차요청에 대해서 운송완료한 배차예약 번호를 Parameter로 받는다.
     booking = Booking.find_by(id: params[:id])
