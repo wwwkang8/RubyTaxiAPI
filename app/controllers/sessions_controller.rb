@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   # 세션을 이용한 로그인
   def create
     @user =User.find_by(email: params[:session][:email].downcase)
-
+    puts 'hello'
     if(@user && (@user.pwd==params[:session][:pwd]))
       session[:user_id]=@user.id
       error_message_response('You have successfully logged in', @user)
@@ -61,10 +61,9 @@ class SessionsController < ApplicationController
     user.pwd == pwd
   end
 
-  def error_message_response(message, user, errors = nil)
+  def error_message_response(message, errors = nil)
     render(json:{
         message: message,
-        user: user,
         errors: errors
     })
   end
