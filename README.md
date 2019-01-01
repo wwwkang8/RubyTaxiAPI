@@ -12,48 +12,48 @@
  1) 회원 가입 POST /users(.:format)  users#create : 이메일, 패스워드, 유저 타입을 입력
  ![createuser](https://user-images.githubusercontent.com/26863285/50573978-a9621d80-0e21-11e9-8400-20cd67e035fe.png)
  
- 2) 로그인 
+ 2) 로그인 <br/>
      - 세션 기반 GET /login(.:format)    sessions#new <br/>
      {<br/>
       "email":"driver12@gmail.com",<br/>
       "pwd":"123"<br/>
      }<br/>
      
-     - JWT 기반 POST /loginToken(.:format)   sessions#create_token
-     {
-      "email":"driver12@gmail.com",
-      "pwd":"123"
-     }
-     토큰 생성 
-     {
-    "data": {
-        "user": {
-            "email": "driver12@gmail.com"
-        },
-        "token":            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMCwiZXhwIjoxNTQ3NTY1MTc0fQ.4LPLVD9m6J6ncNeWPIUVwKPM1b1WanCrgDrANVjya4I"
-        }
-      }
-      
-  3) 배차 신청 POST /bookings    bookings#create
-    {
-      "destination":"I want to go to Drama&Company",
-      "user_id":7
-    }
-    
-  4) 배차 수락 PATCH /bookings/:id     bookings#update
-   예시) http://localhost:3000/bookings/21
-   {
-      "taxi":"11",
-      "user_id":7
-   }
-   
-   5) 배차 완료 후 상태 업데이트 POST /bookings/finishDriving     bookings#finish_driving
-    예시) http://localhost:3000/bookings/finishDriving
-    {
-	    "id":21
-    }
-    
-   6) 배차 목록보기 GET /bookings(.:format)     bookings#index
+     - JWT 기반 POST /loginToken(.:format)   sessions#create_token <br/>
+     {<br/>
+      "email":"driver12@gmail.com",<br/>
+      "pwd":"123"<br/>
+     }<br/>
+     토큰 생성 <br/>
+     {<br/>
+    "data": {<br/>
+        "user": {<br/>
+            "email": "driver12@gmail.com"<br/>
+        },<br/>
+        "token":            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMCwiZXhwIjoxNTQ3NTY1MTc0fQ.4LPLVD9m6J6ncNeWPIUVwKPM1b1WanCrgDrANVjya4I"<br/>
+        }<br/>
+      }<br/>
+      <br/>
+  3) 배차 신청 POST /bookings    bookings#create<br/>
+    {<br/>
+      "destination":"I want to go to Drama&Company",<br/>
+      "user_id":7<br/>
+    }<br/>
+    <br/>
+  4) 배차 수락 PATCH /bookings/:id     bookings#update<br/>
+   예시) http://localhost:3000/bookings/21<br/>
+   {<br/>
+      "taxi":"11",<br/>
+      "user_id":7<br/>
+   }<br/>
+   <br/>
+   5) 배차 완료 후 상태 업데이트 POST /bookings/finishDriving     bookings#finish_driving<br/>
+    예시) http://localhost:3000/bookings/finishDriving<br/>
+    {<br/>
+	    "id":21<br/>
+    }<br/>
+    <br/>
+   6) 배차 목록보기 GET /bookings(.:format)     bookings#index<br/>
    
    
   
