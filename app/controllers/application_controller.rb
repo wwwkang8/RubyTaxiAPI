@@ -6,24 +6,23 @@ class ApplicationController < ActionController::API
     # acts_as_token_authentication_handler_for User, fallback: :none
 
     def current_user
-        # 캐시에 저장.
         # User를 로드하면 캐시에 저장하여 한 번만 로드를 하고, 다음 요청에 대해서 응답한다.
         @current_user ||= User.find(payload['user_id'])
     end
 
 
     private
-
+    
+    # 클라이언트로부터 받아온 토큰을 디코딩하는 함수
     def payload
         JWT.decode(get_token, Rails.application.credentials.secret_key_base, true, {algorithm: 'HS256'}).first
     end
 
-    # Header의 Authorization에서 토큰을 가져오는 것
+    # 클라이언트가 보낸 Request에서 Authorization 헤더부분의 토큰만 추출.
     def get_token
         request.headers['Authorization'].split(' ').last
     end
-
-    # head에 포함되어 있는 토큰을 가져다가 User 객체를 가져오는 메서드
+  
 
 
 end
