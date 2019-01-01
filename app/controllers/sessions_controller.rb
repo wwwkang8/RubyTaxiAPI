@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
 
   end
 
+
   def destroy
     session[:user_id] = nil
     # @user = User.find_by_id(params[:session][:id])
@@ -27,7 +28,7 @@ class SessionsController < ApplicationController
   end
 
   def create_token
-    user = User.where(email: params[:email]).first
+    user = User.find_by(email: params[:email])
 
     if user.present?&&check_valid_password(user, params[:pwd])
       render json: user.as_json(only: [:id, :email, :authentication_token]), status: :created
@@ -37,8 +38,27 @@ class SessionsController < ApplicationController
 
   end
 
-  def check_valid_password(user, password)
-    user.pwd == password
+  def destroy_token
+    current_user.authentication_token = nil
+    if current_user.save
+      head(:ok)
+    else
+      head(:unauthorized)
+    end
+  end
+
+  def create_token2
+    user = User.where(email: params[:email]).first
+
+    if user.valid_password?(params[:pwd])
+      render json: user.as_json(only: [:id, :email]), status: :created
+    else
+      head(:unauthorized)
+    end
+  end
+
+  def check_valid_password(user, pwd)
+    user.pwd == pwd
   end
 
   def error_message_response(message, user, errors = nil)

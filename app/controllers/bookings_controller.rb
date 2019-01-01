@@ -4,7 +4,6 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    byebug
     @bookings = Booking.all.order("id DESC")
   end
 

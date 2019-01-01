@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+
   post 'user_token' => 'user_token#create'
   resources :bookings
   resources :users
@@ -9,5 +12,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   post 'loginToken', to: 'sessions#create_token'
+  post 'logoutToken', to: 'sessions#destroy_token'
   post 'bookings/finishDriving', to: 'bookings#finish_driving'
 end
