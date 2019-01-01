@@ -49,29 +49,38 @@ class BookingsController < ApplicationController
     return error_message_response('This booking has been already accepted by other driver.') if @booking.taxi.present?
 
     # 위의 택시기사가 이미 booking이 있는지 체크하기 위해 객체를 가져온다
-    @booking = Booking.find_by(taxi: driver_params[:taxi]) # 동일 클래스 내부이면 instance variable 사용하지 않는다.
+    # 만약 택시기사가 이전에 받았던 예약들이 많으면 List로 받아야 할텐데?
+    @booking = Booking.find_by(taxi: driver_params[:taxi], status: 'accepted') # 동일 클래스 내부이면 instance variable 사용하지 않는다.
 
-    # 택시기사가 이미 맡은 배차가 있을 때
-    return error_message_response('This taxi driver already have booking') if @booking.present?
-
-
+    # 해당 택시기사가 이미 수락한 배차 요청이 있을때(승객운송을 완료하지 않은 상태)
+    return error_message_response('This taxi driver already have booking') if @booking.present? && @booking.status == 'accepted'
 
     return error_message_response('...', @booking.errors) unless accept_booking
 
     success_response
 
   end
-
-  # 택시기사가 수락한 배차예약에 대해 승객을 이동시켜 완료하였을 떄
-  def finished
-
-  end
-
+  
+  
   def accept_booking
     booking = Booking.find_by(id: params[:id])
     booking.taxi = driver_params[:taxi]
     booking.status = 'accepted'
     booking.save
+  end
+
+  # 택시기사가 수락한 배차예약에 대해 승객을 이동시켜 완료하였을 
+  def finish_driving
+    # 배차요청에 대해서 운송완료한 배차예약 번호를 Parameter로 받는다.
+    booking = Booking.find_by(id: params[:id])
+    
+    # 해당 배차예약의 상태를 finished로 변경한다.
+    booking.status = 'finished'
+    booking.save
+    @msg = {
+        message: 'This booking finished driving'
+    }
+    render json: @msg
   end
 
   def error_message_response(message, errors = nil)
@@ -84,44 +93,6 @@ class BookingsController < ApplicationController
   def success_response
     render :show, status: :ok, location: @booking
   end
-
-  # 내가 처음에 작성한 Update 함수
-=begin
-  def update
-    @user = User.find_by_id(driver_params[:taxi])
-    @booking = Booking.find_by_taxi(@user.id)
-
-    if !(@user.nil?) && @user.usertype == "driver"
-      if @booking.nil?
-        #if @booking.update(booking_params)
-        #  render :show, status: :ok, location: @booking
-        #else
-        # render json: @booking.errors, status: :unprocessable_entity
-        #end
-
-        #@booking.update_attribute(:taxi, driver_params[:taxi])
-        #@booking.update_attribute(:status, "accepted")
-        #@booking.update_attribute(:updated_at, Time.now)
-        taxi= driver_params[:taxi]
-        status= "accepted"
-        updated_at = Time.now
-
-        # @booking.update(taxi: driver_params[:taxi], status: "accepted", updated_at: Time.now)
-      else
-        @msg = {
-            message: "This taxi driver already have booking"
-        }
-        render json: @msg
-      end
-
-    else
-      @msg = {
-          message: "This taxi driver is not exist"
-      }
-      render json: @msg
-    end
-  end
-=end
 
   # DELETE /bookings/1
   # DELETE /bookings/1.json
@@ -137,9 +108,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      # params.require(:booking).permit(:destination, :status, :taxi, :created_at, :updated_at, :user_id)
-      # params.require(:booking).permit(:destination, :user_id)
-      # 파라메터 이름 변경 : :taxi -> :driver_id
       params.require(:booking).permit(:destination, :status, :taxi, :created_at, :updated_at, :user_id)
     end
 

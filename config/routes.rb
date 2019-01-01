@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   post 'loginToken', to: 'sessions#create_token'
+  post 'bookings/finishDriving', to: 'bookings#finish_driving'
 end
