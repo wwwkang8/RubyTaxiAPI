@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_052242) do
+ActiveRecord::Schema.define(version: 2018_12_29_073920) do
 
   create_table "bookings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "destination"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2018_12_28_052242) do
     t.string "usertype"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "authentication_token", limit: 30
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
   end
 
   add_foreign_key "bookings", "users"

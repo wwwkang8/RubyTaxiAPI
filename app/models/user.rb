@@ -1,9 +1,11 @@
 class User < ApplicationRecord
   acts_as_token_authenticatable
 
+=begin
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable
+=end
   # attr_accessor :email, :pwd, :usertype
 
 =begin

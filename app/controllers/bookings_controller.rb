@@ -4,6 +4,7 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
+    byebug
     @bookings = Booking.all.order("id DESC")
   end
 
@@ -58,6 +59,11 @@ class BookingsController < ApplicationController
     return error_message_response('...', @booking.errors) unless accept_booking
 
     success_response
+
+  end
+
+  # 택시기사가 수락한 배차예약에 대해 승객을 이동시켜 완료하였을 떄
+  def finished
 
   end
 
