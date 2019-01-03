@@ -17,9 +17,16 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    
+    # 잘못입력된 usertype에 대해 에러메시지 리턴
+    return error_message_response('Please choose either passenger or driver in usertype') if @user.usertype != 'passenger' && @user.usertype != 'driver'
 
+    # User가 제대로 생성되었을 때의 성공 메시지
     if @user.save
-      render :show, status: :created, location: @user
+      @msg = {
+          message: 'Account successfully registered'
+      }
+      render json: @msg, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -39,6 +46,13 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user.destroy
+  end
+
+  def error_message_response(message, errors = nil)
+    render(json:{
+        message: message,
+        errors: errors
+    })
   end
 
   private
