@@ -1,0 +1,126 @@
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (103.4ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('7114669586943419130', 0)[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (6.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateUsers (20181225165730)
+  [1m[35m (9.5ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` varchar(255), `pwd` varchar(255), `usertype` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ db/migrate/20181225165730_create_users.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::SchemaMigration Create (1.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181225165730')[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateBookings (20181225170300)
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE `bookings` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `destination` varchar(255), `status` varchar(255), `taxi` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `user_id` bigint,  INDEX `index_bookings_on_user_id`  (`user_id`), CONSTRAINT `fk_rails_ef0571f117`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+)[0m
+  ↳ db/migrate/20181225170300_create_bookings.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181225170300')[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to ChangeUpdatedAtNull (20181228043058)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('7114669586943419130')[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('7114669586943419130', 0)[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to ChangeUpdatedAtNull (20181228043058)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('7114669586943419130')[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('7114669586943419130', 0)[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to ChangeUpdatedAtNull (20181228043058)
+  [1m[35m (47.8ms)[0m  [1m[35mALTER TABLE `bookings` CHANGE `updated_at` `updated_at` datetime NOT NULL[0m
+  ↳ db/migrate/20181228043058_change_updated_at_null.rb:3
+  [1m[35m (4.3ms)[0m  [1m[35mALTER TABLE `bookings` CHANGE `taxi` `taxi` int DEFAULT NULL[0m
+  ↳ db/migrate/20181228043058_change_updated_at_null.rb:4
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181228043058')[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to ChangeBookingsStatusColumn (20181228052242)
+  [1m[35m (3.9ms)[0m  [1m[35mALTER TABLE `bookings` CHANGE `status` `status` varchar(255) DEFAULT 'wait'[0m
+  ↳ db/migrate/20181228052242_change_bookings_status_column.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181228052242')[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to AddAuthenticationTokenToUsers (20181229073920)
+  [1m[35m (7.0ms)[0m  [1m[35mALTER TABLE `users` ADD `authentication_token` varchar(30)[0m
+  ↳ db/migrate/20181229073920_add_authentication_token_to_users.rb:3
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_authentication_token`  ON `users` (`authentication_token`) [0m
+  ↳ db/migrate/20181229073920_add_authentication_token_to_users.rb:4
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181229073920')[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2019-01-03 07:47:12', '2019-01-03 07:47:12')[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('7114669586943419130')[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/rake-12.3.2/lib/rake/task.rb:273
+Started POST "/users" for 127.0.0.1 at 2019-01-03 19:22:47 +0900
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"driver1@gmail.com", "pwd"=>"123", "usertype"=>"passenger", "user"=>{"email"=>"driver1@gmail.com", "pwd"=>"123", "usertype"=>"passenger"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'driver1@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`authentication_token` = '1TuZLmxnBxM2WSvVWH_E'[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/simple_token_authentication-1.15.1/lib/simple_token_authentication/acts_as_token_authenticatable.rb:35
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO `users` (`email`, `pwd`, `usertype`, `created_at`, `updated_at`, `authentication_token`) VALUES ('driver1@gmail.com', '123', 'passenger', '2019-01-03 10:22:48', '2019-01-03 10:22:48', '1TuZLmxnBxM2WSvVWH_E')[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (95.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:21
+  Rendering users/show.json.jbuilder
+  Rendered users/_user.json.jbuilder (0.5ms)
+  Rendered users/show.json.jbuilder (10.8ms)
+Completed 201 Created in 152ms (Views: 37.5ms | ActiveRecord: 105.4ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2019-01-03 19:22:54 +0900
+Processing by UsersController#index as */*
+  Parameters: {"email"=>"driver1@gmail.com", "pwd"=>"123", "usertype"=>"passenger", "user"=>{"email"=>"driver1@gmail.com", "pwd"=>"123", "usertype"=>"passenger"}}
+  Rendering users/index.json.jbuilder
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/jbuilder-2.8.0/lib/jbuilder.rb:297
+  Rendered users/_user.json.jbuilder (0.5ms)
+  Rendered users/index.json.jbuilder (7.8ms)
+Completed 200 OK in 44ms (Views: 24.5ms | ActiveRecord: 0.4ms)
+
+

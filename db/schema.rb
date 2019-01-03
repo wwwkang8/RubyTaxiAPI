@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2018_12_29_073920) do
     t.string "status", default: "wait"
     t.integer "taxi"
     t.datetime "created_at", null: false
-    t.datetime "updated_at"
+    t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end

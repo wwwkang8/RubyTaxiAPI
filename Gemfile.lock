@@ -43,6 +43,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
+    bcrypt (3.1.12)
     bcrypt (3.1.12-x64-mingw32)
     bootsnap (1.3.2)
       msgpack (~> 1.0)
@@ -81,10 +82,14 @@ GEM
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
+    msgpack (1.2.4)
     msgpack (1.2.4-x64-mingw32)
     multi_json (1.13.1)
+    mysql2 (0.5.2)
     mysql2 (0.5.2-x64-mingw32)
     nio4r (2.3.1)
+    nokogiri (1.9.1)
+      mini_portile2 (~> 2.4.0)
     nokogiri (1.9.1-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
@@ -144,6 +149,7 @@ GEM
     websocket-extensions (0.1.3)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
@@ -161,7 +167,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.5.3p105
+   ruby 2.3.3p222
 
 BUNDLED WITH
    1.17.2
