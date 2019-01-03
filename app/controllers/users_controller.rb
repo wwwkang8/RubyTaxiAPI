@@ -44,8 +44,14 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.json
+
+  # destroy가 잘 되었다는 것을 어떻게 판단해야할까?
   def destroy
-    @user.destroy
+    if @user.destroy
+      error_message_response('User successfully destroy')
+    else
+      error_message_response('User failed destroy. Please try again')
+    end
   end
 
   def error_message_response(message, errors = nil)
@@ -57,6 +63,7 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    # 토큰을 가져와서 검증을 해야 하는데, 그렇다면 토큰을 어떻게 가져와서 쓸 것인가??
     def set_user
       @user = User.find(params[:id])
     end
