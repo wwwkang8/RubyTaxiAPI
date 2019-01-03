@@ -9,9 +9,27 @@
  
  ## 기능설명 및 파라메터
  
- 1) 회원 가입 POST /users(.:format)  users#create : 이메일, 패스워드, 유저 타입을 입력
- ![createuser](https://user-images.githubusercontent.com/26863285/50573978-a9621d80-0e21-11e9-8400-20cd67e035fe.png)
+ ### 회원 가입 
+ URL
+ - POST /users 
  
+Parameter
+- Level 1 | Required
+	- email :
+	- pwd
+	- usertype
+	
+	
+| Level 1  | Required | Description |
+| ------------- | ------------- | ------------- |
+| email  | O  | 사용자가 입력하는 이메일. 중복 허용불가 |
+| pwd  | O  | 사용자가 입력하는 비밀번호. |
+| usertype | O | 사용자의 타입. 승객(passenger), 기사(driver) |
+
+요청 예제
+Header
+
+
  2) 로그인 <br/>
      - 세션 기반 GET /login(.:format)    sessions#new <br/>
      {<br/>
