@@ -9,16 +9,10 @@
  
  ## 기능설명 및 파라메터
  
- ### 회원 가입 
+ ## 회원 가입 
  URL
  - POST /users 
- 
-Parameter
-- Level 1 | Required
-	- email :
-	- pwd
-	- usertype
-	
+
 	
 | Level 1  |Level 2 |Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
@@ -26,7 +20,7 @@ Parameter
 | | pwd  | O  | 사용자가 입력하는 비밀번호. |
 | | usertype | O | 사용자의 타입. 승객(passenger), 기사(driver) |
 
-요청 예제
+### 요청 예제
 POST /users
 
 ### Header
@@ -57,7 +51,7 @@ POST /users
 
 
 
- 2) 로그인 <br/>
+ ## 로그인(JWT) <br/>
      - 세션 기반 GET /login(.:format)    sessions#new <br/>
      {<br/>
       "email":"driver12@gmail.com",<br/>
@@ -79,6 +73,44 @@ POST /users
         }<br/>
       }<br/>
       <br/>
+URL
+ - POST /loginToken 
+	
+| Level 1  |Level 2 |Required | Description |
+| ------------- | ------------- | ------------- | ------------- |
+| session | email  | O  | 로그인시 입력하는 이메일 주소 |
+| | pwd  | O  | 로그인시 입력하는 비밀번호 |
+| | usertype | O | 사용자의 타입. 승객(passenger), 기사(driver) |
+
+### 요청 예제
+POST /loginToken
+
+### Header
+- Content-Type: application/json
+
+### Body
+- {
+   "session":{
+      "email":"driver11@gmail.com",
+      "pwd":"123"
+   }
+}
+
+### Response
+| Level 1  | ㅣLevel 2 | Level 3  | Description  |
+| ------------- | ------------- |------------- | ------------- |
+| data | . | . | User의 이메일 정보와 토큰을 포함하는 데이터 |
+| . | user | . | User의 이메일을 가지고 있는 데이터 |
+| . | . | email | User의 이메일 데이터 |
+| . | token | . | user_id와 2주의 토근 유효를 가지는 토큰 값 |
+
+### Exceptions
+| Code  |Field |Type | Message | Description |
+| ------------- | ------------- | ------------- |------------- | ------------- |
+| invalid_params | user.email  | required  | No user found. Please check email/password | 이메일이 잘못 입력되었을 때. |
+| | user.password | required | No user found. Please check email/password | 비밀번호가 잘못 입력되었을 때 |
+      
+      
   3) 배차 신청 POST /bookings    bookings#create<br/>
     {<br/>
       "destination":"I want to go to Drama&Company",<br/>
