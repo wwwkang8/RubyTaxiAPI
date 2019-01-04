@@ -18,11 +18,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    # 잘못 입력된 usertype에 대해서 에러메시지 리턴
-    return error_message_response('Please choose either passenger or driver in usertype') if @user.usertype != 'passenger' && @user.usertype != 'driver'
 
-    # 개선코드
-    # return error_message_response('Please choose either passenger or driver in usertype') if %w['passenger', 'driver'].include? @user.usertype
+    return error_message_response('Please choose either passenger or driver in usertype') if %w['passenger', 'driver'].include? @user.usertype
 
     # 잘못 입력된 비밀번호에 대해서 에러메시지 리턴
     return error_message_response('Password is empty') if @user.pwd.nil?

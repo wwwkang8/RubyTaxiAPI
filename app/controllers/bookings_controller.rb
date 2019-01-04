@@ -18,22 +18,10 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
-=begin
-    if (booking_params[:destination]).length < 100
-      if @booking.save
-        render :show, status: :created, location: @booking
-      else
-        render json: @booking.errors, status: :unprocessable_entity
-      end
-    else
-      error_message_response('Destination is too long. limit 100character. Please write shorter.')
-    end
-=end
-   # @booking.save if (booking_params[:destination]).length < 100 # @booking.save가 동작 했을때의 결과 메시지를 보내려면??
 
+    return error_message_response('Destination is too long.') unless booking_params[:destination].length < 100
 
-
-
+    return render json: @booking.errors, status: :unprocessable_entity unless @booking.save
 
   end
 
