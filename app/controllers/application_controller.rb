@@ -22,6 +22,13 @@ class ApplicationController < ActionController::API
     def get_token
         request.headers['Authorization'].split(' ').last
     end
+
+    def error_message_response(message, errors = nil)
+        render(json:{
+            message: message,
+            errors: errors
+        })
+    end
   
 
 

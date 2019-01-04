@@ -18,7 +18,8 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
-    if (booking_params[:destination]).length < 100 # 배차 신청시에 목적지의 글자가 100자 이내로 제한
+=begin
+    if (booking_params[:destination]).length < 100
       if @booking.save
         render :show, status: :created, location: @booking
       else
@@ -27,6 +28,12 @@ class BookingsController < ApplicationController
     else
       error_message_response('Destination is too long. limit 100character. Please write shorter.')
     end
+=end
+   # @booking.save if (booking_params[:destination]).length < 100 # @booking.save가 동작 했을때의 결과 메시지를 보내려면??
+
+
+
+
 
   end
 
@@ -81,13 +88,6 @@ class BookingsController < ApplicationController
     render json: @msg
   end
 
-  def error_message_response(message, errors = nil)
-    render(json: {
-        message: message,
-        errors: errors
-    })
-  end
-
   def success_response
     render :show, status: :ok, location: @booking
   end
@@ -106,7 +106,7 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:destination, :status, :taxi, :created_at, :updated_at, :user_id)
+      params.require(:booking).permit(:destination, :user_id)
     end
 
     def driver_params

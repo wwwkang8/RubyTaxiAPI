@@ -31,6 +31,7 @@ class SessionsController < ApplicationController
   # JWT를 이용해서 로그인
   def create_token
     @user = User.find_by(email: params[:email])
+    # @user = User.find_by(email: session_params[:email])
 
 
     if @user.present?&&check_valid_password(@user, params[:pwd])
@@ -61,11 +62,17 @@ class SessionsController < ApplicationController
     user.pwd == pwd
   end
 
-  def error_message_response(message, errors = nil)
-    render(json:{
-        message: message,
-        errors: errors
-    })
+  # 개선된 코드
+  def valid_password?(user,pwd)
+    user.pwd == pwd
   end
+
+
+=begin
+  private
+  def session_params
+    params.require(:session).permit(:email, :pwd)
+  end
+=end
 
 end

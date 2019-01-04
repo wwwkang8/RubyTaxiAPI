@@ -242,3 +242,246 @@ Processing by UsersController#create as */*
 Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 7.3ms)
 
 
+Started POST "/users" for 127.0.0.1 at 2019-01-04 09:54:06 +0900
+  [1m[35m (0.2ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"passenger1@gmail.com", "pwd"=>"123456", "user"=>{"email"=>"passenger1@gmail.com", "pwd"=>"123456"}}
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 7.2ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2019-01-04 09:54:20 +0900
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"passenger1@gmail.com", "pwd"=>"123456", "usertype"=>"passenger", "user"=>{"email"=>"passenger1@gmail.com", "pwd"=>"123456", "usertype"=>"passenger"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:30
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'passenger1@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:30
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`authentication_token` = 'CjfYxrQz8ycdbn6QY8Bj'[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/simple_token_authentication-1.15.1/lib/simple_token_authentication/acts_as_token_authenticatable.rb:35
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO `users` (`email`, `pwd`, `usertype`, `created_at`, `updated_at`, `authentication_token`) VALUES ('passenger1@gmail.com', '123456', 'passenger', '2019-01-04 00:54:20', '2019-01-04 00:54:20', 'CjfYxrQz8ycdbn6QY8Bj')[0m
+  ↳ app/controllers/users_controller.rb:30
+  [1m[35m (98.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:30
+Completed 201 Created in 106ms (Views: 0.3ms | ActiveRecord: 99.3ms)
+
+
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 09:56:38 +0900
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"passenger1@gmail.com", "pwd"=>"123456", "session"=>{"email"=>"passenger1@gmail.com", "pwd"=>"123456"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'passenger1@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.4ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/sessions_controller.rb:38:in `create_token'
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 09:57:32 +0900
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"passenger1@gmail.com", "pwd"=>"123456", "session"=>{"email"=>"passenger1@gmail.com", "pwd"=>"123456"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'passenger1@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 7.5ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/sessions_controller.rb:38:in `create_token'
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:00:05 +0900
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"passenger1@gmail.com", "pwd"=>"123456", "session"=>{"email"=>"passenger1@gmail.com", "pwd"=>"123456"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'passenger1@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 7.3ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/sessions_controller.rb:38:in `create_token'
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:00:47 +0900
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"passenger1@gmail.com", "pwd"=>"123456", "session"=>{"email"=>"passenger1@gmail.com", "pwd"=>"123456"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/sessions_controller.rb:73:in `session_params'
+app/controllers/sessions_controller.rb:33:in `create_token'
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:01:01 +0900
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"passenger1@gmail.com", "pwd"=>"123456", "session"=>{"email"=>"passenger1@gmail.com", "pwd"=>"123456"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'passenger1@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 8.6ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/sessions_controller.rb:38:in `create_token'
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:02:14 +0900
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"driver30@gmail.com", "pwd"=>"123", "session"=>{"email"=>"driver30@gmail.com", "pwd"=>"123"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'driver30@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.3ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/sessions_controller.rb:38:in `create_token'
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:05:54 +0900
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"driver30@gmail.com", "pwd"=>"123", "session"=>{"email"=>"driver30@gmail.com", "pwd"=>"123"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE (driver30@gmail.com) LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.4ms)
+
+
+  
+ActiveRecord::StatementInvalid (Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@gmail.com) LIMIT 1' at line 1: SELECT  `users`.* FROM `users` WHERE (driver30@gmail.com) LIMIT 1):
+  
+app/controllers/sessions_controller.rb:33:in `create_token'
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:06:31 +0900
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"driver30@gmail.com", "pwd"=>"123", "session"=>{"email"=>"driver30@gmail.com", "pwd"=>"123"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'driver30@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 8.0ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/sessions_controller.rb:38:in `create_token'
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:10:28 +0900
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"driver30@gmail.com", "pwd"=>"123", "session"=>{"email"=>"driver30@gmail.com", "pwd"=>"123"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'driver30@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 7.7ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/sessions_controller.rb:39:in `create_token'
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:12:38 +0900
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"driver30@gmail.com", "pwd"=>"123", "session"=>{"email"=>"driver30@gmail.com", "pwd"=>"123"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'driver30@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 7.5ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/sessions_controller.rb:39:in `create_token'
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:28:33 +0900
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by SessionsController#create_token as */*
+  Parameters: {"session"=>{"email"=>"driver1@gmail.com", "pwd"=>"123"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` IS NULL LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:28:43 +0900
+Processing by SessionsController#create_token as */*
+  Parameters: {"session"=>{"email"=>"driver1@gmail.com", "pwd"=>123}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` IS NULL LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:29:13 +0900
+Processing by SessionsController#create_token as */*
+  Parameters: {"session"=>{"email"=>"driver10@gmail.com", "pwd"=>"123"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` IS NULL LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:29:16 +0900
+Processing by SessionsController#create_token as */*
+  Parameters: {"session"=>{"email"=>"driver10@gmail.com", "pwd"=>"123"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` IS NULL LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:29:17 +0900
+Processing by SessionsController#create_token as */*
+  Parameters: {"session"=>{"email"=>"driver10@gmail.com", "pwd"=>"123"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` IS NULL LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:30:34 +0900
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"driver10@gmail.com", "pwd"=>"123", "session"=>{"email"=>"driver10@gmail.com", "pwd"=>"123"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'driver10@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 7.9ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/sessions_controller.rb:39:in `create_token'
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:30:52 +0900
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"driver10@gmail.com", "pwd"=>"123", "session"=>{"email"=>"driver10@gmail.com", "pwd"=>"123"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'driver10@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.3ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/sessions_controller.rb:39:in `create_token'
+Started POST "/loginToken" for 127.0.0.1 at 2019-01-04 10:30:57 +0900
+Processing by SessionsController#create_token as */*
+  Parameters: {"email"=>"driver10@gmail.com", "pwd"=>"123", "session"=>{"email"=>"driver10@gmail.com", "pwd"=>"123"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'driver10@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:33
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.4ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/sessions_controller.rb:39:in `create_token'
