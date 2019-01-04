@@ -20,14 +20,41 @@ Parameter
 	- usertype
 	
 	
-| Level 1  | Required | Description |
-| ------------- | ------------- | ------------- |
-| email  | O  | 사용자가 입력하는 이메일. 중복 허용불가 |
-| pwd  | O  | 사용자가 입력하는 비밀번호. |
-| usertype | O | 사용자의 타입. 승객(passenger), 기사(driver) |
+| Level 1  |Level 2 |Required | Description |
+| ------------- | ------------- | ------------- | ------------- |
+| user | email  | O  | 사용자가 입력하는 이메일. 중복 허용불가 |
+| | pwd  | O  | 사용자가 입력하는 비밀번호. |
+| | usertype | O | 사용자의 타입. 승객(passenger), 기사(driver) |
 
 요청 예제
-Header
+POST /users
+
+### Header
+- Content-Type: application/json
+
+### Body
+- {
+   "user":{
+      "email":"driver30@gmail.com",
+      "pwd":"123",
+      "usertype":"driver"
+   }
+}
+
+### Response
+| Level 1  | Description |
+| ------------- | ------------- |
+| message | 회원 가입의 성공 실패여부에 관한 메시지 반환 |
+
+### Exceptions
+| Code  |Field |Type | Message | Description |
+| ------------- | ------------- | ------------- |------------- | ------------- |
+| invalid_params | user.email  | required  | has already been taken | 기존에 이메일이 사용되고 있을 경우 중복 허용불가. |
+| | user.usertype  | required  | Please choose either passenger or driver in usertype| 사용자의 유저 타입이 오입력되었을 경우 |
+| | user.password | required | Password is empty | 비밀번호가 입력되지 않아 파라메터로 전송되지 않았을 때 |
+| | user.password | required | Please write password at least 6 characters | 비밀번호가 6자리 미만으 입력되었을 때 |
+
+
 
 
  2) 로그인 <br/>
