@@ -20,7 +20,7 @@ class ApplicationController < ActionController::API
 
     # 클라이언트가 보낸 Request에서 Authorization 헤더부분의 토큰만 추출.
     def get_token
-        request.headers['Authorization'].split(' ').last
+        request.headers['Authorization']
     end
 
     def error_message_response(message, errors = nil)
