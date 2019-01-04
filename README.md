@@ -104,6 +104,17 @@ POST /loginToken
 | . | . | email | User의 이메일 데이터 |
 | . | token | . | user_id와 2주의 토근 유효를 가지는 토큰 값 |
 
+### 응답예제
+{
+   "data":{
+      "user":{
+         "email":"driver12@gmail.com"
+      },
+      "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMCwiZXhwIjoxNTQ3NTY1MTc0fQ.4LPLVD9m6J6ncNeWPIUVwKPM1b1WanCrgDrANVjya4I"
+   }
+}
+
+
 ### Exceptions
 | Code  |Field |Type | Message | Description |
 | ------------- | ------------- | ------------- |------------- | ------------- |
