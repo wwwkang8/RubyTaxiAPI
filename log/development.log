@@ -124,3 +124,121 @@ Processing by UsersController#index as */*
 Completed 200 OK in 44ms (Views: 24.5ms | ActiveRecord: 0.4ms)
 
 
+Started POST "/users" for 127.0.0.1 at 2019-01-04 09:18:22 +0900
+  [1m[35m (1.2ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+  [1m[35m (6.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"driver30@gmail.com", "pwd"=>"123", "usertype"=>"driver", "user"=>{"email"=>"driver30@gmail.com", "pwd"=>"123", "usertype"=>"driver"}}
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 14.0ms)
+
+
+  
+NoMethodError (undefined method `type' for #<User:0x007fa605a4cbc8>):
+  
+app/controllers/users_controller.rb:22:in `create'
+Started POST "/users" for 127.0.0.1 at 2019-01-04 09:19:16 +0900
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"driver30@gmail.com", "pwd"=>"123", "usertype"=>"driver", "user"=>{"email"=>"driver30@gmail.com", "pwd"=>"123", "usertype"=>"driver"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:24
+  [1m[36mUser Exists (2.1ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'driver30@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:24
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`authentication_token` = 'Z9zA8nAxR4mLf3C6c-Gb'[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/simple_token_authentication-1.15.1/lib/simple_token_authentication/acts_as_token_authenticatable.rb:35
+  [1m[36mUser Create (1.3ms)[0m  [1m[32mINSERT INTO `users` (`email`, `pwd`, `usertype`, `created_at`, `updated_at`, `authentication_token`) VALUES ('driver30@gmail.com', '123', 'driver', '2019-01-04 00:19:16', '2019-01-04 00:19:16', 'Z9zA8nAxR4mLf3C6c-Gb')[0m
+  ↳ app/controllers/users_controller.rb:24
+  [1m[35m (46.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:24
+Completed 201 Created in 67ms (Views: 0.3ms | ActiveRecord: 57.7ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2019-01-04 09:25:31 +0900
+  [1m[35m (0.2ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"driver11@gmail.com", "pwd"=>"123", "usertype"=>"driver", "user"=>{"email"=>"driver11@gmail.com", "pwd"=>"123", "usertype"=>"driver"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:24
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'driver11@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:24
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`authentication_token` = '93kcjUK3fWV_7iU3dd8F'[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/simple_token_authentication-1.15.1/lib/simple_token_authentication/acts_as_token_authenticatable.rb:35
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO `users` (`email`, `pwd`, `usertype`, `created_at`, `updated_at`, `authentication_token`) VALUES ('driver11@gmail.com', '123', 'driver', '2019-01-04 00:25:31', '2019-01-04 00:25:31', '93kcjUK3fWV_7iU3dd8F')[0m
+  ↳ app/controllers/users_controller.rb:24
+  [1m[35m (83.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:24
+Completed 201 Created in 88ms (Views: 0.2ms | ActiveRecord: 84.4ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2019-01-04 09:25:37 +0900
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"driver10@gmail.com", "pwd"=>"123", "usertype"=>"driver", "user"=>{"email"=>"driver10@gmail.com", "pwd"=>"123", "usertype"=>"driver"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:24
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'driver10@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:24
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`authentication_token` = 'K_Kok7dzDohQezw2xsXV'[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/simple_token_authentication-1.15.1/lib/simple_token_authentication/acts_as_token_authenticatable.rb:35
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO `users` (`email`, `pwd`, `usertype`, `created_at`, `updated_at`, `authentication_token`) VALUES ('driver10@gmail.com', '123', 'driver', '2019-01-04 00:25:37', '2019-01-04 00:25:37', 'K_Kok7dzDohQezw2xsXV')[0m
+  ↳ app/controllers/users_controller.rb:24
+  [1m[35m (84.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:24
+Completed 201 Created in 88ms (Views: 0.2ms | ActiveRecord: 84.9ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2019-01-04 09:26:36 +0900
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"driver1@gmail.com", "pwd"=>"123", "usertype"=>"driver", "user"=>{"email"=>"driver1@gmail.com", "pwd"=>"123", "usertype"=>"driver"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:24
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'driver1@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:24
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:24
+Completed 422 Unprocessable Entity in 13ms (Views: 0.2ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2019-01-04 09:27:48 +0900
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"driver12@gmail.com", "pwd"=>"123", "usertype"=>"hd", "user"=>{"email"=>"driver12@gmail.com", "pwd"=>"123", "usertype"=>"hd"}}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2019-01-04 09:32:18 +0900
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"passenger1@gmail.com", "pwd"=>"", "usertype"=>"passenger", "user"=>{"email"=>"passenger1@gmail.com", "pwd"=>"", "usertype"=>"passenger"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:26
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = 'passenger1@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:26
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:26
+Completed 422 Unprocessable Entity in 19ms (Views: 0.2ms | ActiveRecord: 8.4ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2019-01-04 09:32:28 +0900
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"passenger1@gmail.com", "usertype"=>"passenger", "user"=>{"email"=>"passenger1@gmail.com", "usertype"=>"passenger"}}
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2019-01-04 09:34:29 +0900
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/drama/.rvm/gems/ruby-2.3.3/gems/puma-3.12.0/lib/puma/configuration.rb:225
+Processing by UsersController#create as */*
+  Parameters: {"email"=>"passenger1@gmail.com", "pwd"=>"123", "usertype"=>"passenger", "user"=>{"email"=>"passenger1@gmail.com", "pwd"=>"123", "usertype"=>"passenger"}}
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 7.3ms)
+
+
