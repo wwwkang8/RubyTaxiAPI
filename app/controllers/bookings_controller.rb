@@ -5,8 +5,7 @@ class BookingsController < ApplicationController
   # GET /bookings.json
   def index
     @user = current_user
-    puts @user.email
-    @bookings = Booking.all.order("id DESC")
+    @bookings = Booking.all.order(id: :desc)
   end
 
   # GET /bookings/1
