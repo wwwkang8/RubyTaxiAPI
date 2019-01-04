@@ -68,11 +68,4 @@ class SessionsController < ApplicationController
   end
 
 
-=begin
-  private
-  def session_params
-    params.require(:session).permit(:email, :pwd)
-  end
-=end
-
 end
