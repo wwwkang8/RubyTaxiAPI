@@ -21,6 +21,11 @@ class UsersController < ApplicationController
     # 잘못입력된 usertype에 대해 에러메시지 리턴
     return error_message_response('Please choose either passenger or driver in usertype') if @user.usertype != 'passenger' && @user.usertype != 'driver'
 
+    # 잘못 입력된 비밀번호에 대해서 에러메시지 리턴
+    return error_message_response('Password is empty') if @user.pwd.nil?
+
+    # 6자리 미만으로 입력된 비밀번호에 대해서 에러메시지 리턴
+    return error_message_response('Please write password at least 6 characters') if @user.pwd.length < 6
     # User가 제대로 생성되었을 때의 성공 메시지
     if @user.save
       @msg = {
