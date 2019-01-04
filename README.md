@@ -52,28 +52,8 @@ POST /users
 
 
  ## 로그인(JWT) <br/>
-     - 세션 기반 GET /login(.:format)    sessions#new <br/>
-     {<br/>
-      "email":"driver12@gmail.com",<br/>
-      "pwd":"123"<br/>
-     }<br/>
-     
-     - JWT 기반 POST /loginToken(.:format)   sessions#create_token <br/>
-     {<br/>
-      "email":"driver12@gmail.com",<br/>
-      "pwd":"123"<br/>
-     }<br/>
-     토큰 생성 <br/>
-     {<br/>
-    "data": {<br/>
-        "user": {<br/>
-            "email": "driver12@gmail.com"<br/>
-        },<br/>
-        "token":            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMCwiZXhwIjoxNTQ3NTY1MTc0fQ.4LPLVD9m6J6ncNeWPIUVwKPM1b1WanCrgDrANVjya4I"<br/>
-        }<br/>
-      }<br/>
-      <br/>
-URL
+
+### URL
  - POST /loginToken 
 	
 | Level 1  |Level 2 |Required | Description |
@@ -120,7 +100,21 @@ POST /loginToken
 | ------------- | ------------- | ------------- |------------- | ------------- |
 | invalid_params | user.email  | required  | No user found. Please check email/password | 이메일이 잘못 입력되었을 때. |
 | | user.password | required | No user found. Please check email/password | 비밀번호가 잘못 입력되었을 때 |
-      
+
+
+## 배차 목록조회
+
+### URL
+- GET /bookings/:id
+
+| Level 1  |Level 2 |Required | Description |
+| ------------- | ------------- | ------------- | ------------- |
+| user | email  | O  | 사용자가 입력하는 이메일. 중복 허용불가 |
+| | pwd  | O  | 사용자가 입력하는 비밀번호. |
+| | usertype | O | 사용자의 타입. 승객(passenger), 기사(driver) |
+
+
+
       
   3) 배차 신청 POST /bookings    bookings#create<br/>
     {<br/>
