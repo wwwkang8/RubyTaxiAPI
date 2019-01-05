@@ -5,8 +5,7 @@ class BookingsController < ApplicationController
   # GET /bookings.json
   def index
     @user = current_user
-    puts @user.email
-    @bookings = Booking.all.order("id DESC")
+    @bookings = Booking.all.order("id: :desc")
   end
 
   # GET /bookings/1
@@ -19,6 +18,7 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
+    # 가드를 쳐서 depth를 최대한 줄이기.
     if (booking_params[:destination]).length < 100 # 배차 신청시에 목적지의 글자가 100자 이내로 제한
       if @booking.save
         render :show, status: :created, location: @booking
@@ -100,12 +100,12 @@ class BookingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_booking
       @booking = Booking.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+     # create, update model.save를 할 때 업데이트 될 위험성이 있다.
+      # user_id --> passenger_id taxi -> driver_id
     def booking_params
       params.require(:booking).permit(:destination, :status, :taxi, :created_at, :updated_at, :user_id)
     end
