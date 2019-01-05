@@ -18,8 +18,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     
-    # 잘못입력된 usertype에 대해 에러메시지 리턴
-    return error_message_response('Please choose either passenger or driver in usertype') if @user.usertype != 'passenger' && @user.usertype != 'driver'
+    # 잘못입력된 usertype에 대해 에러메시지 리턴          개선 코드 : [passenger, driver].include? @user.usertype, 루비는 not에 대한 메서드도 있다. ex) 물음표 메서드
+    return error_message_response('Please choose either passenger or driver in usertype') if %w['passenger', 'driver'].include? @user.usertype
 
     # 잘못 입력된 비밀번호에 대해서 에러메시지 리턴
     return error_message_response('Password is empty') if @user.pwd.nil?
@@ -67,10 +67,8 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    # 토큰을 가져와서 검증을 해야 하는데, 그렇다면 토큰을 어떻게 가져와서 쓸 것인가??
     def set_user
-      @user = User.find(params[:id])
+      @user = self.current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
