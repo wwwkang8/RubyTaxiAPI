@@ -63,11 +63,5 @@ class SessionsController < ApplicationController
     user.pwd == pwd
   end
 
-  def error_message_response(message, errors = nil)
-    render(json:{
-        message: message,
-        errors: errors
-    })
-  end
 
 end

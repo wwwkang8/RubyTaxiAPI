@@ -10,4 +10,9 @@ class User < ApplicationRecord
 
   has_many :bookings
 
+  def dfd
+    @user=User.find
+
+  end
+
 end

@@ -75,13 +75,6 @@ class BookingsController < ApplicationController
     render json: @msg
   end
 
-  def error_message_response(message, errors = nil)
-    render(json: {
-        message: message,
-        errors: errors
-    })
-  end
-
   def success_response
     render :show, status: :ok, location: @booking
   end
