@@ -22,8 +22,8 @@ class SessionsController < ApplicationController
     # @user = User.find_by_id(params[:session][:id])
     # session.delete(@user.id)
     @msg = {
-        message: "Session deleted",
-        user: User.find_by_id(session[:user_id])
+        message: "Sessionㅍ deleted",
+        user: User.find_by_id(session[:user_id]) # 이부분은 어차피 nil을 파라메터로 호출. 의미X
     }
     render json: @msg
   end
@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
 
 
-    if @user.present?&&check_valid_password(@user, params[:pwd])
+    if @user.present?&&valid_password?(@user, params[:pwd])
       # JWT 토큰 생성 : User 아이디, 토큰 만료기간을 이용하여 JWT 토큰을 생성하고, 암호화 방식은 HS256 사용
       jwt = JWT.encode({user_id: @user.id, exp: (Time.now + 2.weeks).to_i}, Rails.application.credentials.secret_key_base, 'HS256')
 
@@ -57,7 +57,9 @@ class SessionsController < ApplicationController
   end
   
   # 입력한 비밀번호가 User 객체의 비밀번호와 맞는지 체크하는 함수
-  def check_valid_password(user, pwd)
+  # valid_password?() 이런식으로 해서 boolean 결과값을 받는 메서드임을 표시.
+  #
+  def valid_password?(user, pwd)
     user.pwd == pwd
   end
 
