@@ -18,16 +18,9 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
-    # 가드를 쳐서 depth를 최대한 줄이기.
-    if (booking_params[:destination]).length < 100 # 배차 신청시에 목적지의 글자가 100자 이내로 제한
-      if @booking.save
-        render :show, status: :created, location: @booking
-      else
-        render json: @booking.errors, status: :unprocessable_entity
-      end
-    else
-      error_message_response('Destination is too long. limit 100character. Please write shorter.')
-    end
+    return error_message_response('Destination is too long.') unless booking_params[:destination].length < 100
+
+    return render json: @booking.errors, status: :unprocessable_entity unless @booking.save
 
   end
 
