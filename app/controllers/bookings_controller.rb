@@ -100,7 +100,7 @@ class BookingsController < ApplicationController
      # create, update model.save를 할 때 업데이트 될 위험성이 있다.
       # user_id --> passenger_id taxi -> driver_id
     def booking_params
-      params.require(:booking).permit(:destination, :status, :taxi, :created_at, :updated_at, :user_id)
+      params.require(:booking).permit(:destination, :user_id)
     end
 
     def driver_params
