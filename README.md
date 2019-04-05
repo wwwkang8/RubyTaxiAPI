@@ -69,7 +69,7 @@ POST /loginToken
 - Content-Type: application/json
 
 ### Body
-- {
+{
    "session":{
       "email":"driver11@gmail.com",
       "pwd":"123"
