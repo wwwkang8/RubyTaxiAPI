@@ -114,7 +114,6 @@ POST /loginToken
 | | usertype | O | 사용자의 타입. 승객(passenger), 기사(driver) |
 
 
-
       
   3) 배차 신청 POST /bookings    bookings#create<br/>
     {<br/>
